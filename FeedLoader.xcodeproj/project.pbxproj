@@ -10,6 +10,8 @@
 		BC1BF7412B3EE1E600EAA307 /* FeedLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1BF7382B3EE1E600EAA307 /* FeedLoader.framework */; };
 		BC1BF7462B3EE1E600EAA307 /* FeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1BF7452B3EE1E600EAA307 /* FeedLoaderTests.swift */; };
 		BC1BF7472B3EE1E600EAA307 /* FeedLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = BC1BF73B2B3EE1E600EAA307 /* FeedLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC1BF7512B3EF69D00EAA307 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1BF7502B3EF69D00EAA307 /* RemoteFeedLoader.swift */; };
+		BC1BF7532B3EF6B200EAA307 /* HTTP Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1BF7522B3EF6B200EAA307 /* HTTP Client.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,8 @@
 		BC1BF73B2B3EE1E600EAA307 /* FeedLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedLoader.h; sourceTree = "<group>"; };
 		BC1BF7402B3EE1E600EAA307 /* FeedLoaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedLoaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC1BF7452B3EE1E600EAA307 /* FeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderTests.swift; sourceTree = "<group>"; };
+		BC1BF7502B3EF69D00EAA307 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
+		BC1BF7522B3EF6B200EAA307 /* HTTP Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTP Client.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				BC1BF73B2B3EE1E600EAA307 /* FeedLoader.h */,
+				BC1BF7502B3EF69D00EAA307 /* RemoteFeedLoader.swift */,
+				BC1BF7522B3EF6B200EAA307 /* HTTP Client.swift */,
 			);
 			path = FeedLoader;
 			sourceTree = "<group>";
@@ -144,6 +150,7 @@
 				TargetAttributes = {
 					BC1BF7372B3EE1E600EAA307 = {
 						CreatedOnToolsVersion = 15.1;
+						LastSwiftMigration = 1510;
 					};
 					BC1BF73F2B3EE1E600EAA307 = {
 						CreatedOnToolsVersion = 15.1;
@@ -191,6 +198,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC1BF7512B3EF69D00EAA307 /* RemoteFeedLoader.swift in Sources */,
+				BC1BF7532B3EF6B200EAA307 /* HTTP Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +345,7 @@
 		BC1BF74B2B3EE1E600EAA307 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -364,16 +374,18 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		BC1BF74C2B3EE1E600EAA307 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -402,16 +414,17 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		BC1BF74E2B3EE1E600EAA307 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 235A2Z833B;
@@ -422,16 +435,17 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kashyap.shashwat.weather.FeedLoaderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		BC1BF74F2B3EE1E600EAA307 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 235A2Z833B;
@@ -442,10 +456,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kashyap.shashwat.weather.FeedLoaderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
