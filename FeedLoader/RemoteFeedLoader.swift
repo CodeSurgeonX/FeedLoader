@@ -7,28 +7,35 @@
 
 import Foundation
 class RemoteFeedLoader {
-    let url: String
+    let url: URL
     let client: HTTPClientProtocol
     
     
-    init(url: String, client: HTTPClientProtocol) {
+    init(url: URL, client: HTTPClientProtocol) {
         self.url = url
         self.client = client
     }
     
     func load(completion: @escaping (FeedLoaderError?) -> Void) {
-        client.load(url: self.url) { error in
-            
-            if let error {
+        client.load(url: self.url) { result in
+            switch result {
+            case .success(let response):
+                // Deal with response and data
+                print(response.res)
+                print(response.data)
+                
+                //Lets say data conversion failed
+                completion(.invalidData)
+            case .failure(let error):
+                // Deal with error
+                print(error)
                 completion(.connectivity)
-            } else {
-                completion(nil)
             }
-            
         }
     }
 }
 
 public enum FeedLoaderError: Error {
     case connectivity
+    case invalidData
 }

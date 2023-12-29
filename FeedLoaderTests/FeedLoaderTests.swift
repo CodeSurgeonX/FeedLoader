@@ -10,53 +10,57 @@ import XCTest
 
 class FeedLoaderTests: XCTestCase {
     private let client = HTTPClientSpy()
-    lazy var sut = RemoteFeedLoader(url: "a.com", client: client)
-    var capturedErrors: [FeedLoaderError] = []
-    
-    
-    
-//    func test_Error() {
-//        client.error = NSError(domain: "ConnectionError", code: 0) //Random HTTP Error
-//        
-//        sut.load { [weak self] error in
-//            // If feed back loader gave an error store it
-//            if let error {
-//                self?.capturedErrors.append(error)
-//            }
-//        }
-//    
-//        XCTAssertEqual(capturedErrors, [FeedLoaderError.connectivity])
-//    }
-    
-    
-    func test_Error_AsyncWay() {
-        
-        sut.load { [weak self] error in
+    lazy var sut = RemoteFeedLoader(url: URL(string: "a.com")!, client: client)
+
+    func test_Error_AsyncWay_ConnectivityError() {
+        var capturedErrors: [FeedLoaderError] = []
+
+        sut.load { error in
             if let error {
-                self?.capturedErrors.append(error)
+                capturedErrors.append(error)
             }
         }
         
-        client.completions[0](NSError(domain: "", code: 1))
+        client.completeWithError(error: NSError(domain: "HTTPError", code: 201))
         XCTAssertEqual(capturedErrors, [FeedLoaderError.connectivity])
+    }
+    
+    
+    func test_Error_AsyncWay_InvalidData() {
+        var capturedErrors: [FeedLoaderError] = []
+
+        sut.load { error in
+            if let error {
+                capturedErrors.append(error)
+            }
+        }
+        
+//        client.completeWithError(error: NSError(domain: "HTTPError", code: 201))
+        let invalidData = Data("Invalid JSON".utf8)
+        client.completeWithStatusCode(code: 201, data: invalidData)
+        XCTAssertEqual(capturedErrors, [FeedLoaderError.invalidData])
     }
     
 
     // MARK: - Helpers
     
     private class HTTPClientSpy: HTTPClientProtocol {
-        typealias HTTPClientCompletion = (Error?) -> Void
+        typealias HTTPClientCompletion = (Result<(res: HTTPURLResponse?, data: Data), Error>) -> Void
         
+        var messages: [(url: URL, completion: HTTPClientCompletion)] = []
         
-//        var error: Error? // Set this before test
+        func load(url: URL, completion: @escaping HTTPClientCompletion) {
+            messages.append((url, completion))
+        }
         
+        func completeWithError(error: Error, index: Int = 0) {
+            messages[index].completion(.failure(error))
+        }
         
-        // These two can be used for testing
-        var urlRequests: [String] = []
-        var completions: [HTTPClientCompletion] = []
-        
-        func load(url: String, completion: @escaping HTTPClientCompletion) {
-            completions.append(completion)
+        func completeWithStatusCode(code: Int, data: Data, index: Int = 0) {
+            let message = messages[index]
+            let response = HTTPURLResponse(url: message.url, statusCode: code, httpVersion: nil, headerFields: nil)
+            message.completion(.success((res: response, data: Data("invalid Data".utf8))))
         }
     }
 

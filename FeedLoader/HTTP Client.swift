@@ -8,11 +8,11 @@
 import Foundation
 
 protocol HTTPClientProtocol {
-    func load(url:String, completion: @escaping (Error?) -> Void)
+    func load(url: URL, completion: @escaping (Result<(res: HTTPURLResponse?, data: Data), Error>) -> Void)
 }
 
 class HTTPClient : HTTPClientProtocol {
-    func load(url: String, completion: (Error?) -> Void) {
+    func load(url: URL, completion: (Result<(res: HTTPURLResponse?, data: Data), Error>) -> Void) {
         //Real code has to do its own thing
     }
 }
