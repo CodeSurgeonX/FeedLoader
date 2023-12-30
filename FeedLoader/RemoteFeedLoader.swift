@@ -7,6 +7,7 @@
 
 import Foundation
 class RemoteFeedLoader {
+    typealias RemoteFeedLoaderCompletion = (FeedLoaderError?) -> Void
     let url: URL
     let client: HTTPClientProtocol
     
@@ -16,19 +17,12 @@ class RemoteFeedLoader {
         self.client = client
     }
     
-    func load(completion: @escaping (FeedLoaderError?) -> Void) {
+    func load(completion: @escaping RemoteFeedLoaderCompletion) {
         client.load(url: self.url) { result in
             switch result {
             case .success(let response):
-                // Deal with response and data
-                print(response.res)
-                print(response.data)
-                
-                //Lets say data conversion failed
                 completion(.invalidData)
             case .failure(let error):
-                // Deal with error
-                print(error)
                 completion(.connectivity)
             }
         }

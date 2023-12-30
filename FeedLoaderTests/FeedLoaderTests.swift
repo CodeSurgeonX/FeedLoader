@@ -44,9 +44,7 @@ class FeedLoaderTests: XCTestCase {
 
     // MARK: - Helpers
     
-    private class HTTPClientSpy: HTTPClientProtocol {
-        typealias HTTPClientCompletion = (Result<(res: HTTPURLResponse?, data: Data), Error>) -> Void
-        
+    private class HTTPClientSpy: HTTPClientProtocol {        
         var messages: [(url: URL, completion: HTTPClientCompletion)] = []
         
         func load(url: URL, completion: @escaping HTTPClientCompletion) {
