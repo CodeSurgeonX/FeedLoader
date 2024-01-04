@@ -1,14 +1,9 @@
 workflows:
-    unit-testing:
-        name: iOS Unit Tests
-        max_build_duration: 120
-        instance_type: mac_mini_m1
-        script:  |
-        xcodebuild clean build test -project FeedLoader.xcodeproj -scheme FeedLoader CODE_SIGN_IDENTITY="" CODE_SIGN_REQUIRED=NO
-
-
-
-scripts:
-  - name: Emulator tests
-    script: |
-      xcodebuild clean build test -project FeedLoader.xcodeproj -scheme FeedLoader CODE_SIGN_IDENTITY="" CODE_SIGN_REQUIRED=NO
+  ios-native-workflow:
+    name: iOS Native
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    scripts:
+      - name: Run unit tests
+        script: |
+          xcodebuild clean build test -project FeedLoader.xcodeproj -scheme FeedLoader CODE_SIGN_IDENTITY="" CODE_SIGN_REQUIRED=NO
