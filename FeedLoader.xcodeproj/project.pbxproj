@@ -12,6 +12,7 @@
 		BC1BF7472B3EE1E600EAA307 /* FeedLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = BC1BF73B2B3EE1E600EAA307 /* FeedLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC1BF7512B3EF69D00EAA307 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1BF7502B3EF69D00EAA307 /* RemoteFeedLoader.swift */; };
 		BC1BF7532B3EF6B200EAA307 /* HTTP Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1BF7522B3EF6B200EAA307 /* HTTP Client.swift */; };
+		BC3DF5A32B469494008A937D /* LocalFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3DF5A22B469494008A937D /* LocalFeedLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		BC1BF7452B3EE1E600EAA307 /* FeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderTests.swift; sourceTree = "<group>"; };
 		BC1BF7502B3EF69D00EAA307 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		BC1BF7522B3EF6B200EAA307 /* HTTP Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTP Client.swift"; sourceTree = "<group>"; };
+		BC3DF5A22B469494008A937D /* LocalFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFeedLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 		BC1BF72E2B3EE1E600EAA307 = {
 			isa = PBXGroup;
 			children = (
+				BC3DF5A12B46947C008A937D /* FeedCache */,
 				BC1BF73A2B3EE1E600EAA307 /* FeedLoader */,
 				BC1BF7442B3EE1E600EAA307 /* FeedLoaderTests */,
 				BC1BF7392B3EE1E600EAA307 /* Products */,
@@ -86,6 +89,14 @@
 				BC1BF7452B3EE1E600EAA307 /* FeedLoaderTests.swift */,
 			);
 			path = FeedLoaderTests;
+			sourceTree = "<group>";
+		};
+		BC3DF5A12B46947C008A937D /* FeedCache */ = {
+			isa = PBXGroup;
+			children = (
+				BC3DF5A22B469494008A937D /* LocalFeedLoader.swift */,
+			);
+			path = FeedCache;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC3DF5A32B469494008A937D /* LocalFeedLoader.swift in Sources */,
 				BC1BF7512B3EF69D00EAA307 /* RemoteFeedLoader.swift in Sources */,
 				BC1BF7532B3EF6B200EAA307 /* HTTP Client.swift in Sources */,
 			);
